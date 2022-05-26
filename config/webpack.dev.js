@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 
 const paths = require('./paths');
-// import common webpack config
 const common = require('./webpack.common');
 
 module.exports = merge(common, {

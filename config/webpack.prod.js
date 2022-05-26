@@ -67,6 +67,7 @@ module.exports = merge(common, {
                     },
                     {
                         loader: 'css-loader', // translates CSS into CommonJS modules
+                        options: { importLoaders: 2 }, // specify how many loaders should be enabled before 
                     },
                     {
                         loader: 'postcss-loader', // Run post css actions

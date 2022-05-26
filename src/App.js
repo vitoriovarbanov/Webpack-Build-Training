@@ -5,6 +5,7 @@ import './Assets/scss/style.scss'
 function App() {
   return (
     <div className="App">
+      <h1 style={{fontSize: '64px'}}>Hello from webpack</h1>
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
