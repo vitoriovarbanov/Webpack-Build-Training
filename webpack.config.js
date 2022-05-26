@@ -10,6 +10,7 @@ module.exports = {
 module.exports = (webpackEnv) => {
     const isEnvDevelopment = webpackEnv === 'development';
     const isEnvProduction = webpackEnv === 'production';
+    console.log(`mode is: ${process.env.NODE_ENV}`);
 
     return {
         mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',

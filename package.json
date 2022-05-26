@@ -22,7 +22,7 @@
     "webpack-cli": "^4.9.2"
   },
   "scripts": {
-    "start": "webpack serve --config ./webpack.config.js --env development --mode development",
+    "start": "webpack serve --config config/webpack.dev.js --env development --node-env development --mode development",
     "build": "webpack --mode production",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -51,6 +51,7 @@
     "postcss": "^8.4.14",
     "postcss-loader": "^7.0.0",
     "sass-loader": "^13.0.0",
-    "webpack-dev-server": "^4.9.0"
+    "webpack-dev-server": "^4.9.0",
+    "webpack-merge": "^5.8.0"
   }
 }
