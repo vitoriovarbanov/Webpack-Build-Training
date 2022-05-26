@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "webpack serve --config config/webpack.dev.js --env development --node-env development --mode development",
-    "build": "webpack --mode production",
+    "build": "webpack --config config/webpack.prod.js --mode production",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -47,10 +47,13 @@
   },
   "devDependencies": {
     "css-loader": "^6.7.1",
+    "css-minimizer-webpack-plugin": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "postcss": "^8.4.14",
     "postcss-loader": "^7.0.0",
     "sass-loader": "^13.0.0",
+    "terser-webpack-plugin": "^5.3.1",
+    "webpack-bundle-analyzer": "^4.5.0",
     "webpack-dev-server": "^4.9.0",
     "webpack-merge": "^5.8.0"
   }

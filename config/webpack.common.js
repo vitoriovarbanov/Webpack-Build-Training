@@ -2,6 +2,7 @@
 // This file will contain configuration data that
 // is shared between development and production builds.
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path');
 const paths = require('./paths');
 
@@ -12,6 +13,7 @@ module.exports = {
             filename: './index.html',
             favicon: './public/favicon.ico'
         }),
+        new BundleAnalyzerPlugin()
     ],
     resolve: {
         // File extensions. Add others and needed (e.g. scss, json)
