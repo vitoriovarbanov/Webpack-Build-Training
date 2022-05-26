@@ -11,8 +11,11 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = merge(common, {
     entry: {
         // Split vendor code into separate bundles
-        vendor: ['react'],
-        app: paths.appIndexJs,
+        vendor: ['react', 'react-dom'],
+        app: {
+            import: paths.appIndexJs,
+            dependOn: "vendor",
+        },
     },
     devtool: 'source-map',
     mode: 'production',
@@ -23,6 +26,7 @@ module.exports = merge(common, {
         filename: '[chunkhash]_[name].js',
         path: paths.appBuild,
         publicPath: '/',
+        clean: true,
     },
     plugins: [
         // Uglify to minify your JavaScript
@@ -39,20 +43,6 @@ module.exports = merge(common, {
     ],
     module: {
         rules: [
-            {
-                // look for .js or .jsx files
-                test: /\.(js|jsx)$/,
-                // in the `src` directory
-                include: path.resolve(paths.appSrc),
-                exclude: /node_modules/,
-                use: {
-                    // use babel for transpiling JavaScript files
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/react'],
-                    },
-                },
-            },
             {
                 test: /\.css$/,
                 use: [
@@ -127,6 +117,6 @@ module.exports = merge(common, {
                 parallel: true,
             }),
             new CssMinimizerPlugin(),
-        ]
+        ],
     },
 });

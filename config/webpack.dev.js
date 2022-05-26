@@ -9,7 +9,8 @@ module.exports = merge(common, {
     entry: [paths.appIndexJs],
     output: {
         path: paths.appBuild,
-        filename: '[name].bundle.js'
+        filename: '[name].bundle.js',
+        clean: true,
     },
     mode: 'development',
     // devtool option controls if and how source maps are generated.
@@ -32,16 +33,6 @@ module.exports = merge(common, {
     ],
     module: {
         rules: [
-            {
-                test: /\.(jsx|js)$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react']
-                    }
-                }
-            },
             {
                 test: /\.css$/i,
                 use: ["style-loader", "css-loader"],

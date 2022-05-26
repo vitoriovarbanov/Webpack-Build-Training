@@ -1,4 +1,3 @@
-// webpack-common-config.js
 // This file will contain configuration data that
 // is shared between development and production builds.
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -29,6 +28,17 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.(jsx|js)$/,
+                include: path.resolve(paths.appSrc),
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env', '@babel/preset-react']
+                    }
+                }
+            },
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
