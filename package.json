@@ -2,6 +2,7 @@
   "name": "webpack-jest-training",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://vitoriovarbanov.github.io/Webpack-Build-Training/",
   "dependencies": {
     "@babel/core": "^7.18.0",
     "@babel/preset-env": "^7.18.0",
