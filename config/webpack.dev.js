@@ -3,16 +3,16 @@ const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 
 const paths = require('./paths');
-// import common webpack config
 const common = require('./webpack.common');
 
 module.exports = merge(common, {
     entry: [paths.appIndexJs],
     output: {
         path: paths.appBuild,
-        filename: '[name].bundle.js'
+        filename: '[name].bundle.js',
+        clean: true,
     },
-    mode: 'development',
+    //mode: 'development',
     // devtool option controls if and how source maps are generated.
     // see https://webpack.js.org/configuration/devtool/
     // If you find that you need more control of source map generation,
@@ -33,16 +33,6 @@ module.exports = merge(common, {
     ],
     module: {
         rules: [
-            {
-                test: /\.(jsx|js)$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react']
-                    }
-                }
-            },
             {
                 test: /\.css$/i,
                 use: ["style-loader", "css-loader"],
