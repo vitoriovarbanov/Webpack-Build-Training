@@ -12,7 +12,7 @@ module.exports = merge(common, {
         filename: '[name].bundle.js',
         clean: true,
     },
-    mode: 'development',
+    //mode: 'development',
     // devtool option controls if and how source maps are generated.
     // see https://webpack.js.org/configuration/devtool/
     // If you find that you need more control of source map generation,

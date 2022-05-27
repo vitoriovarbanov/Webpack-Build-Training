@@ -25,7 +25,7 @@ module.exports = merge(common, {
     output: {
         filename: '[chunkhash]_[name].js',
         path: paths.appBuild,
-        publicPath: '/',
+        publicPath: 'Webpack-Build-Training',
         clean: true,
     },
     plugins: [
