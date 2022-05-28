@@ -5,6 +5,7 @@ const common = require('./webpack.common');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
 module.exports = merge(common, {
     devtool: 'source-map',
@@ -21,6 +22,9 @@ module.exports = merge(common, {
                 NODE_ENV: JSON.stringify('production'),
             },
         }),
+        new WebpackManifestPlugin({
+            fileName: 'asset-manifest.json',
+        })
     ],
     module: {
         rules: [

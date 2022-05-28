@@ -1,8 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
-
 const common = require('./webpack.common');
+
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 module.exports = merge(common, {
     mode: 'development',
@@ -23,6 +24,10 @@ module.exports = merge(common, {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('development'),
         }),
+        // Watcher doesn't work well if you mistype casing in a path so we use
+        // a plugin that prints an error when you attempt to do this.
+        // See https://github.com/facebook/create-react-app/issues/240
+        new CaseSensitivePathsPlugin(),
     ],
     module: {
         rules: [

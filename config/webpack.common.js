@@ -40,7 +40,7 @@ module.exports = {
             filename: './index.html',
             favicon: './public/favicon.ico'
         }),
-        new BundleAnalyzerPlugin()
+        new BundleAnalyzerPlugin(),
     ],
     resolve: {
         // File extensions. Add others and needed (e.g. scss, json)
