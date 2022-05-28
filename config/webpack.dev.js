@@ -2,22 +2,15 @@ const path = require('path');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 
-const paths = require('./paths');
 const common = require('./webpack.common');
 
 module.exports = merge(common, {
-    entry: [paths.appIndexJs],
-    output: {
-        path: paths.appBuild,
-        filename: '[name].bundle.js',
-        clean: true,
-    },
-    //mode: 'development',
+    mode: 'development',
     // devtool option controls if and how source maps are generated.
     // see https://webpack.js.org/configuration/devtool/
     // If you find that you need more control of source map generation,
     // see https://webpack.js.org/plugins/source-map-dev-tool-plugin/
-    devtool: 'eval',
+    devtool: 'cheap-module-source-map',
     devServer: {
         static: {
             directory: path.resolve(__dirname, 'dist')
@@ -33,10 +26,6 @@ module.exports = merge(common, {
     ],
     module: {
         rules: [
-            {
-                test: /\.css$/i,
-                use: ["style-loader", "css-loader"],
-            },
             {
                 test: /\.s[ac]ss$/i,
                 use: [
@@ -57,10 +46,10 @@ module.exports = merge(common, {
                         }
                     },
                     {
-                        loader: 'sass-loader',
+                        loader: 'sass-loader', // compiles Sass to CSS
                         options: {
                             sourceMap: true,
-                        }, // compiles Sass to CSS
+                        }, 
                     }
                 ]
             }

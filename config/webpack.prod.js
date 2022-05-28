@@ -1,7 +1,5 @@
-const path = require('path');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
-const paths = require('./paths');
 const common = require('./webpack.common');
 
 const TerserPlugin = require('terser-webpack-plugin');
@@ -9,25 +7,8 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = merge(common, {
-    entry: {
-        // Split vendor code into separate bundles
-        vendor: ['react', 'react-dom'],
-        app: {
-            import: paths.appIndexJs,
-            dependOn: "vendor",
-        },
-    },
     devtool: 'source-map',
     mode: 'production',
-    // Set the name of our JS bundle using a chuckhash
-    // (e.g. '5124f5efa5436b5b5e7d_app.js')
-    // Location where built files will go.
-    output: {
-        filename: '[chunkhash]_[name].js',
-        path: paths.appBuild,
-        publicPath: 'Webpack-Build-Training',
-        clean: true,
-    },
     plugins: [
         // Uglify to minify your JavaScript
         new MiniCssExtractPlugin({
@@ -43,12 +24,6 @@ module.exports = merge(common, {
     ],
     module: {
         rules: [
-            {
-                test: /\.css$/,
-                use: [
-                    MiniCssExtractPlugin.loader, "css-loader"
-                ]
-            },
             {
                 test: /\.s[ac]ss$/i,
                 use: [
