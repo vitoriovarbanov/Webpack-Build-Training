@@ -1,28 +1,13 @@
+@import "./bootstrap/custom.scss";
+@import "./fonts/fonts.scss";
 @import "./utils/app_variables";
-
-@font-face {
-  font-family: 'Montserrat';
-  font-weight: 400;
-  src: local('Montserrat'), url(../fonts/Montserrat-Regular.ttf) format('truetype');
-}
-
-@font-face {
-    font-family: 'Montserrat';
-    font-weight: 100;
-    src: local('Montserrat'), url(../fonts/Montserrat-Thin.ttf) format('truetype');
-}
-
-@font-face {
-    font-family: 'Montserrat';
-    font-weight: 800;
-    src: local('Montserrat'), url(../fonts/Montserrat-ExtraBold.ttf) format('truetype');
-}
+@import "node_modules/bootstrap/scss/bootstrap";
 
 .App{
-  background-color: $color-blue;
+  //background-color: $color-blue;
   font-family: Montserrat, Arial, serif;
   font-size: 2rem;
-  height: 95vh;
+  height: 90vh;
   width: 100%;
   text-align: center;
 }

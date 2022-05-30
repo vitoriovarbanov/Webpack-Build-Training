@@ -25,14 +25,14 @@ module.exports = {
         filename: '[name].[chunkhash:8].bundle.js',
         publicPath: process.env.npm_lifecycle_event === lifecycleEventDevMode ? '/' : '/Webpack-Build-Training/',
         clean: true,
-        assetModuleFilename: (pathData) => {
+        ...(process.env.npm_lifecycle_event === lifecycleEventDevMode) && { assetModuleFilename: (pathData) => {
             const filepath = path
               .dirname(pathData.filename)
               .split("/")
               .slice(1)
               .join("/");
             return `${filepath}/[name].[contenthash][ext][query]`;
-        },
+        }},
     },
     plugins: [
         new HtmlWebpackPlugin({

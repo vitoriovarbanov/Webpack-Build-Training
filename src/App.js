@@ -1,6 +1,6 @@
 import React from 'react'
 import logo from './assets/img/logo.svg';
-import './Assets/scss/index.scss'
+import './assets/scss/index.scss'
 
 function App() {
   return (
@@ -8,6 +8,7 @@ function App() {
       <h1 style={{fontSize: '64px'}}>Hello from webpack</h1>
       <h1 style={{fontSize: '64px'}}>Goodbye from webpack</h1>
       <img src={logo} className="App-logo" alt="logo" width={100} height={100}/>
+      <button>Style me</button>
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

@@ -11,7 +11,7 @@ module.exports = merge(common, {
     // see https://webpack.js.org/configuration/devtool/
     // If you find that you need more control of source map generation,
     // see https://webpack.js.org/plugins/source-map-dev-tool-plugin/
-    devtool: 'cheap-module-source-map',
+    devtool: 'eval-cheap-module-source-map',
     devServer: {
         static: {
             directory: path.resolve(__dirname, 'dist')
