@@ -17,6 +17,7 @@ const prodEntry =  {
         dependOn: "vendor",
     },
 }
+const isProd = process.env.npm_lifecycle_event !== lifecycleEventDevMode
 
 module.exports = {
     entry: process.env.npm_lifecycle_event === lifecycleEventDevMode ? devEntry : prodEntry,
@@ -25,7 +26,7 @@ module.exports = {
         filename: '[name].[chunkhash:8].bundle.js',
         publicPath: process.env.npm_lifecycle_event === lifecycleEventDevMode ? '/' : '/Webpack-Build-Training/',
         clean: true,
-        ...(process.env.npm_lifecycle_event === lifecycleEventDevMode) && { assetModuleFilename: (pathData) => {
+        ...(isProd) && { assetModuleFilename: (pathData) => {
             const filepath = path
               .dirname(pathData.filename)
               .split("/")
@@ -44,7 +45,7 @@ module.exports = {
     ],
     resolve: {
         // File extensions. Add others and needed (e.g. scss, json)
-        extensions: ['.js', '.jsx'],
+        extensions: ['.tsx', '.js', '.jsx'],
         modules: ['node_modules'],
         // Aliases help with shortening relative paths
         // 'Components/button' === '../../../components/button'
@@ -57,13 +58,13 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(jsx|js)$/,
+                test: /\.(jsx|js|tsx|ts)$/,
                 include: path.resolve(paths.appSrc),
                 exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react']
+                        presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript']
                     }
                 }
             },

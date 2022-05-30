@@ -4,6 +4,8 @@ const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
 
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const paths = require('./paths');
 
 module.exports = merge(common, {
     mode: 'development',
@@ -21,6 +23,12 @@ module.exports = merge(common, {
         hot: true,
     },
     plugins: [
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: "[name].css",
+            chunkFilename: "[id].css",
+        }),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('development'),
         }),
@@ -33,9 +41,12 @@ module.exports = merge(common, {
         rules: [
             {
                 test: /\.s[ac]ss$/i,
+                exclude: /node_modules/,
+                include: paths.scssSrc,
                 use: [
                     {
-                        loader: 'style-loader', // inject CSS to page
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {},
                     },
                     {
                         loader: 'css-loader', // translates CSS into CommonJS modules
@@ -44,16 +55,16 @@ module.exports = merge(common, {
                         loader: 'postcss-loader', // Run post css actions
                         options: {
                             postcssOptions: {
-                                plugins: {
+                               /*  plugins: {
                                     autoprefixer: {},
-                                }
+                                } */
                             },
                         }
                     },
                     {
                         loader: 'sass-loader', // compiles Sass to CSS
                         options: {
-                            sourceMap: true,
+                            //sourceMap: true,
                         }, 
                     }
                 ]

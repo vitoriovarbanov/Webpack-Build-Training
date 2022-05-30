@@ -9,6 +9,7 @@ module.exports = {
   appBuild: resolveApp('dist'), // Prod built files end up here
   appConfig: resolveApp('config'), // App config files
   appHtml: resolveApp('public/index.html'),
-  appIndexJs: resolveApp('src/index.js'), // Main entry point
+  appIndexJs: resolveApp('src/index.tsx'), // Main entry point
   appSrc: resolveApp('src'), // App source
+  scssSrc: resolveApp('src/assets/scss'), // App SCSS
 };

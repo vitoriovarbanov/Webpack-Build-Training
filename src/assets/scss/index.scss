@@ -1,13 +1,20 @@
-@import "./bootstrap/custom.scss";
-@import "./fonts/fonts.scss";
+//@import "./bootstrap/custom.scss";
 @import "./utils/app_variables";
-@import "node_modules/bootstrap/scss/bootstrap";
+//@import "node_modules/bootstrap/scss/bootstrap";
+@import "./fonts/fonts.scss";
+// Custom Variables Files
+@import "./custom";
 
-.App{
+body {
+  font-family: Montserrat, Arial, serif !important;
+  background-color: yellowgreen !important;
+}
+
+/* .App{
   //background-color: $color-blue;
   font-family: Montserrat, Arial, serif;
   font-size: 2rem;
   height: 90vh;
   width: 100%;
   text-align: center;
-}
+} */
