@@ -45,7 +45,7 @@ module.exports = {
     ],
     resolve: {
         // File extensions. Add others and needed (e.g. scss, json)
-        extensions: ['.tsx', '.js', '.jsx'],
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
         modules: ['node_modules'],
         // Aliases help with shortening relative paths
         // 'Components/button' === '../../../components/button'
