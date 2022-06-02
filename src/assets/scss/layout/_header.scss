@@ -1,0 +1,39 @@
+.header {
+    margin: 3rem;
+    height: 90vh;
+    background: url('../../img/header-background.jpg');
+    background-size: cover;
+    background-position-y: center;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+
+    &--logo{
+        position: absolute;
+        top: 10;
+        left: 10;
+        height: 80px;
+        width: 80px;
+    }
+
+    &--shadow {
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        opacity: .3;
+        position: absolute;
+    }
+
+    &--container-heading {
+        text-align: center;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+    }
+
+    &--form{
+        position: absolute;
+    }
+}

@@ -9,7 +9,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const lifecycleEventDevMode = 'start';
 const devEntry = paths.appIndexJs;
-const prodEntry =  {
+const prodEntry = {
     // Split vendor code into separate bundles
     vendor: ['react', 'react-dom'],
     app: {
@@ -19,21 +19,25 @@ const prodEntry =  {
 }
 const isProd = process.env.npm_lifecycle_event !== lifecycleEventDevMode
 
+
 module.exports = {
-    entry: process.env.npm_lifecycle_event === lifecycleEventDevMode ? devEntry : prodEntry,
+    entry: isProd ? prodEntry : devEntry,
     output: {
         path: paths.appBuild,
         filename: '[name].[chunkhash:8].bundle.js',
-        publicPath: process.env.npm_lifecycle_event === lifecycleEventDevMode ? '/' : '/Webpack-Build-Training/',
+        publicPath: isProd ? '/Webpack-Build-Training/' : '/',
         clean: true,
-        ...(isProd) && { assetModuleFilename: (pathData) => {
-            const filepath = path
-              .dirname(pathData.filename)
-              .split("/")
-              .slice(1)
-              .join("/");
-            return `${filepath}/[name].[contenthash][ext][query]`;
-        }},
+        /* ...(isProd) && {
+            assetModuleFilename: (pathData) => {
+                console.log(pathData.filename)
+                const filepath = path
+                    .dirname(pathData.filename)
+                    .split("/")
+                    .slice(1)
+                    .join("/");
+                return `${filepath}/[name].[contenthash][ext][query]`;
+            }
+        }, */
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -72,17 +76,28 @@ module.exports = {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 exclude: /node_modules/,
                 type: 'asset/resource',
+                generator: {
+                    filename: "img/[name][ext][query]",
+                },
             },
             {
                 test: /\.(ttf|eot|woff|woff2)$/,
                 exclude: /node_modules/,
                 type: 'asset/resource',
+                generator: {
+                    filename: "fonts/[name][ext][query]",
+                },
             },
             {
                 test: /\.css$/,
                 use: [
-                    process.env.npm_lifecycle_event === lifecycleEventDevMode ? "style-loader" : MiniCssExtractPlugin.loader, 
-                    "css-loader"
+                    isProd ? MiniCssExtractPlugin.loader : "style-loader",
+                    {
+                        loader: "css-loader",
+                        options: {
+                            url: false
+                        },
+                    }
                 ]
             },
         ],

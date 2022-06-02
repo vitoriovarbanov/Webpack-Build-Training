@@ -21,6 +21,13 @@ module.exports = merge(common, {
         open: true,
         port: 9000,
         hot: true,
+        devMiddleware: {
+            //writeToDisk: true, 
+            // This option slows down with a couple of m/s the reloading of the server during 
+            //development, include if you want to see the output of the build in dev
+            
+        }
+        
     },
     plugins: [
         new MiniCssExtractPlugin({
@@ -44,28 +51,24 @@ module.exports = merge(common, {
                 exclude: /node_modules/,
                 include: paths.scssSrc,
                 use: [
+                    { loader: "style-loader" },
+                    { loader: "css-loader" },
                     {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {},
-                    },
-                    {
-                        loader: 'css-loader', // translates CSS into CommonJS modules
-                    },
-                    {
-                        loader: 'postcss-loader', // Run post css actions
+                        loader: 'postcss-loader',
                         options: {
                             postcssOptions: {
-                               /*  plugins: {
-                                    autoprefixer: {},
-                                } */
+                                plugins: {
+                                    // autoprefixer: {},
+                                }
                             },
                         }
                     },
+                    { loader: 'resolve-url-loader' },
                     {
-                        loader: 'sass-loader', // compiles Sass to CSS
+                        loader: 'sass-loader',
                         options: {
-                            //sourceMap: true,
-                        }, 
+                            sourceMap: true,
+                        },
                     }
                 ]
             }

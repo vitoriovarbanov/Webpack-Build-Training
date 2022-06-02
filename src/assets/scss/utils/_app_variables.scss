@@ -1,2 +1,61 @@
-$color-sassy: #cc4397;
-$color-blue: #0059ff;
+//COLORS
+$color-primary: #68bde7;
+$color-white: white;
+$color-pink-red: #d66761;
+$color-dark-gray: #001b2e;
+$color-light-gray: #303639;
+
+$color-black: #000;
+$color-gray-coal: #222;
+$color-gray-lead: #666;
+$gray-cement: #999;
+$gray-titanium: #AAA;
+$gray-cloud: #DADEE8;
+$gray-mist: #F1F1F1;
+
+//FONT SIZES
+$font-xs: 1.2rem;
+$font-sm: 1.4rem;
+$font-md: 1.6rem;
+$font-lg: 2.4rem;
+$font-xlg: 3rem;
+
+//FONT SIZES HEADINGS
+$h1: 8rem;
+$h2: 6rem;
+$h3: 3rem;
+$h4: 2.5rem;
+$h5: 1.8rem;
+$h6: 1.4rem;
+
+//FONT: Weight
+$font-regular: 400;
+$font-semi-bold: 600;
+$font-bold: 700;
+$font-extra-bold: 900;
+
+//FONT Line Height
+$line-height: 1.3;
+
+//ICON SIZES --- ADD LATER****************************
+
+
+
+//MEDIA QUERIES
+
+
+
+//GRID
+$grid-column-count: 12;
+
+//GRID GUTTERS
+$grid-gutter-horizontal: 2rem;
+$grid-gutter-sm: calc($grid-gutter-horizontal / 2);
+$grid-gutter-lg: calc($grid-gutter-horizontal * 2);
+
+
+//SPACING - MARGIN, PADDING
+$spacing: 1rem;
+$spacing-2x: calc($spacing * 2);
+$spacing-3x: calc($spacing * 3);
+$spacing-small: calc($spacing / 2);

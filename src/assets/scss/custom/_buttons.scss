@@ -1,10 +1,24 @@
 //@import '../app-variables';
 
-.btn-primary {
-    background: #fff !important;
-    border-color: yellowgreen !important;
-    color: black !important;
-    box-shadow: -0.1em 0 .4em olive;
+.btn-primary,
+.btn-primary:link,
+.btn-primary.visited {
+    background: $color-white;
+    width: 20rem;
+    height: 3.5rem;
+    color: black;
+    border: none;
+    border-radius: 2.2rem;
+    font-family: Montserrat, Arial, serif;
+    font-size: 1.5rem;
+    letter-spacing: .2rem;
+    cursor: pointer;
+    transition: all .2s;
+
+    &:hover{
+      transform: translateY(-2px);
+      box-shadow: -0.1em 0 .7em black;
+    }
 }
 
 /* .btn-primary:focus {

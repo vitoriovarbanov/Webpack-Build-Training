@@ -1,3 +1,4 @@
+const path = require('path');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
@@ -6,6 +7,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = merge(common, {
     devtool: 'source-map',
@@ -24,7 +26,19 @@ module.exports = merge(common, {
         }),
         new WebpackManifestPlugin({
             fileName: 'asset-manifest.json',
-        })
+        }),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, '../src/assets/img'),
+                    to: path.resolve(__dirname, '../dist/img')
+                },
+                {
+                    from: path.resolve(__dirname, '../src/assets/fonts'),
+                    to: path.resolve(__dirname, '../dist/fonts')
+                }
+            ]
+        }),
     ],
     module: {
         rules: [
@@ -36,7 +50,10 @@ module.exports = merge(common, {
                     },
                     {
                         loader: 'css-loader', // translates CSS into CommonJS modules
-                        options: { importLoaders: 2 }, // specify how many loaders should be enabled before 
+                        options: {
+                            url: false,
+                            importLoaders: 2
+                        }, // specify how many loaders should be enabled before 
                     },
                     {
                         loader: 'postcss-loader', // Run post css actions
@@ -46,16 +63,17 @@ module.exports = merge(common, {
                                 plugins: () => [
                                     require('postcss-flexbugs-fixes'),
                                     require('postcss-preset-env')({
-                                      autoprefixer: {
-                                        flexbox: 'no-2009'
-                                      },
-                                      stage: 3
+                                        autoprefixer: {
+                                            flexbox: 'no-2009'
+                                        },
+                                        stage: 3
                                     })
                                 ],
                                 sourceMap: true
                             }
                         }
                     },
+                    { loader: 'resolve-url-loader' },
                     {
                         loader: 'sass-loader', // compiles Sass to CSS
                         options: {
