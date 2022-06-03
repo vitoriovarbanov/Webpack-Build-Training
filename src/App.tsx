@@ -1,71 +1,106 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/scss/index.scss';
-// import mainLogo from './assets/img/logo-main.png';
-import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import {
+  Formik,
+  Field,
+  Form,
+  ErrorMessage,
+  useField,
+  FieldHookConfig,
+  useFormikContext,
+  FieldProps
+} from 'formik';
+import { Page1 } from './components/BikeSelectForm/Page1';
+import { Page2 } from './components/BikeSelectForm/Page2';
+import { Page3 } from './components/BikeSelectForm/Page3';
+import { Page4 } from './components/BikeSelectForm/Page4';
+import { Page5 } from './components/BikeSelectForm/Page5';
 
-function SignupForm() {
-  // Note that we have to initialize ALL of fields with values. These
-  // could come from props, but since we don’t want to prefill this form,
-  // we just use an empty string. If we don’t do this, React will yell
-  // at us.
-  const formik = useFormik({
-    initialValues: {
-      firstName: '',
-      lastName: '',
-      email: ''
-    },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    }
-  });
-  return (
-    <form onSubmit={formik.handleSubmit} className='header--form'>
-      <label htmlFor='firstName'>
-        <input
-          id='firstName'
-          name='firstName'
-          type='text'
-          onChange={formik.handleChange}
-          value={formik.values.firstName}
-        />
-        First Name
-      </label>
-
-      <label htmlFor='lastName'>
-        <input
-          id='lastName'
-          name='lastName'
-          type='text'
-          onChange={formik.handleChange}
-          value={formik.values.lastName}
-        />
-        Last Name
-      </label>
-
-      <label htmlFor='email'>
-        <input
-          id='email'
-          name='email'
-          type='email'
-          onChange={formik.handleChange}
-          value={formik.values.email}
-        />
-        Email Address
-      </label>
-
-      <button type='submit'>Submit</button>
-    </form>
-  );
+interface State {
+  page: number;
 }
 
-function App() {
+enum RideOptions {
+  City = "City",
+  Mountain = "Mountain",
+  Road = "Road",
+  NotSure = "NotSure"
+}
+
+enum ElectricalBikeEnum {
+  No = "No",
+  Yes = "Yes",
+}
+
+interface FormValues {
+  height: number;
+  rideOptions: RideOptions;
+  electricalBike: ElectricalBikeEnum;
+  budget: number;
+  brandPreferences: string[]
+}
+
+const FormObserver = (): null => {
+  const { values } = useFormikContext();
+  useEffect(() => {
+    console.log("FormObserver::values", values);
+  }, [values]);
+  return null;
+};
+
+const formPages = [<Page1 />, <Page2 />, <Page3 />, <Page4 />, <Page5 />]
+
+const BikeSelectionForm = (): JSX.Element  => {
+  const [page, setPage] = useState<number>(0)
+
+
+  return (
+    <Formik<FormValues, {}>
+      initialValues={{ height: 0, rideOptions: RideOptions.City, electricalBike: ElectricalBikeEnum.No, budget: 0, brandPreferences: [] }}
+      validationSchema={Yup.object({
+        firstName: Yup.string()
+          .max(15, 'Must be 15 characters or less')
+          .required('Required'),
+        lastName: Yup.string()
+          .max(20, 'Must be 20 characters or less')
+          .required('Required'),
+        email: Yup.string().email('Invalid email address').required('Required')
+      })}
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(() => {
+          //await new Promise((r) => setTimeout(r, 500));
+          alert(JSON.stringify(values, null, 2));
+          setSubmitting(false);
+        }, 400);
+      }}
+    >
+      {
+        ({ values, setFieldValue }) => (
+          <Form className='header--form'>
+            <FormObserver />
+            {formPages[page]}
+            {
+              page !== formPages.length - 1
+                ? <button type='submit' className='btn-primary' onClick={() => setPage(page + 1)}>Proceed</button>
+                : <button type='submit' className='btn-primary'>Submit</button>
+            }
+
+          </Form>
+        )
+      }
+    </Formik>
+  );
+};
+
+const App = () => {
   return (
     <div className='App'>
       <header className='header'>
         <div className='header--shadow' />
-        <SignupForm />
-        {/* <img
+        <BikeSelectionForm />
+            {/* <img
           src={mainLogo}
           alt='website logo'
           height={200}
@@ -86,6 +121,6 @@ function App() {
       </header>
     </div>
   );
-}
+};
 
 export default App;
