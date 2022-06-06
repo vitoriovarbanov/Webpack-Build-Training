@@ -1,21 +1,41 @@
 import React from 'react';
 import {
-    Field,
-    ErrorMessage,
-  } from 'formik';
+  Field,
+  ErrorMessage,
+  useFormikContext
+} from 'formik';
 
-export const Page1 = () => {
-    return (
-        <div className="header--form-page1">
-            <label htmlFor="height" className='form-label-header'>Enter your height</label>
-            <div className='form-input-container'>
-              <Field name="height" type="number" className="form-input" min="10" max={200}/>
-            <span>cm</span>
-            </div>
+interface FormikActions<Values> {
+  setFieldValue<Field extends keyof Values>(
+    field: Field,
+    value: Values[Field],
+    shouldValidate?: boolean
+  ): void;
+}
 
-            <ErrorMessage name="height" />
-        </div>
-    )
+export const Page1 = ({ onChangeFn, setFieldValue }:
+  { onChangeFn: (value: Event & { target: HTMLInputElement }) => void, setFieldValue: (field: string, value: string | number) => void }) => {
+  return (
+    <div className="header--form-page1">
+      <label htmlFor="height" className='form-label-header'>Enter your height</label>
+      <div className='form-input-container'>
+        <Field name="height" type="number" className="form-input" min="10" max="250"
+          onFocus={(e: Event & { target: HTMLInputElement }) => {
+            if (parseFloat(e.target.value) === 0) {
+              setFieldValue("height", '')
+            }
+          }}
+          onChange={(e: Event & { target: HTMLInputElement }) => {
+            if (parseFloat(e.target.value) > 999) {
+              return
+            }
+            onChangeFn(e)
+          }} />
+        <span>cm</span>
+      </div>
+      <ErrorMessage name="height" />
+    </div>
+  )
 
 }
 

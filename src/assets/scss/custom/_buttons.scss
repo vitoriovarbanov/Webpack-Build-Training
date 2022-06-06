@@ -4,8 +4,6 @@
 .btn-primary:link,
 .btn-primary.visited {
     background: $color-white;
-    width: 20rem;
-    height: 3.5rem;
     color: black;
     border: none;
     border-radius: 2.2rem;
@@ -19,6 +17,21 @@
       transform: translateY(-2px);
       box-shadow: -0.1em 0 .7em black;
     }
+}
+
+.btn-sm{
+  width: 10rem;
+  height: 3rem;
+}
+
+.btn-md{
+  width: 15rem;
+  height: 3.2rem;
+}
+
+.btn-lg{
+  width: 20rem;
+  height: 3.5rem;
 }
 
 /* .btn-primary:focus {

@@ -1,6 +1,13 @@
 .form-label-header {
     font-size: 4rem;
     text-transform: uppercase;
+    letter-spacing: .5rem;
+}
+
+.form-label-header-sm {
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
 }
 
 .form-input-container {
@@ -10,7 +17,7 @@
     background-color: rgba(57, 63, 84, 0.5);
     border-radius: 2px;
     display: flex;
-    margin-top: 3rem;
+    //@at-root: 3rem;
 
     &:after {
         content: '';
@@ -28,7 +35,7 @@
         animation: gradient 3s linear infinite;
     }
 
-    span{
+    span {
         font-size: 2rem;
         position: absolute;
         bottom: 0;
@@ -43,17 +50,91 @@
     padding: 5px 0px;
     flex-grow: 1;
     background-color: transparent;
-    text-align: right;
+    text-align: center;
     color: #BFD2FF;
     font-size: 2.5rem;
     line-height: 2.4rem;
     vertical-align: middle;
+
     &::-webkit-input-placeholder {
-      color: #7881A1;
+        color: #7881A1;
     }
 
     &:active,
-    &:focus{
+    &:focus {
         outline: none;
     }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+///////  RADIO BUTTONS  ///////
+.radio-group-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem 3rem;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.radio-label {
+    font-size: 2rem;
+    letter-spacing: .3rem;
+    display: flex;
+    align-items: center;
+    border-radius: 100px;
+    padding: 8px 12px;
+    margin: 5px 0;
+    background-color: transparent;
+    background: #7881A1;
+    
+    cursor: pointer;
+    transition: .3s;
+}
+
+.radio-label:hover,
+.radio-label:focus-within {
+    background: hsla(0, 0%, 80%, .14);
+}
+
+.radio-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    z-index: -1;
+}
+
+.radio-design {
+    width: 22px;
+    height: 22px;
+    border-radius: 100px;
+  
+    background: linear-gradient(to right bottom, hsl(154, 97%, 62%), hsl(225, 97%, 62%));
+    position: relative;
+  }
+  
+  .rad-design::before {
+    content: '';  
+    display: inline-block;
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+  
+    background: hsl(0, 0%, 90%);
+    transform: scale(1.1);
+    transition: .3s;
   }

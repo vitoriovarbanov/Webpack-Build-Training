@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FormEventHandler, useEffect, useState } from 'react';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/scss/index.scss';
 import * as Yup from 'yup';
@@ -18,9 +18,6 @@ import { Page3 } from './components/BikeSelectForm/Page3';
 import { Page4 } from './components/BikeSelectForm/Page4';
 import { Page5 } from './components/BikeSelectForm/Page5';
 
-interface State {
-  page: number;
-}
 
 enum RideOptions {
   City = "City",
@@ -50,18 +47,17 @@ const FormObserver = (): null => {
   return null;
 };
 
-const formPages = [<Page1 />, <Page2 />, <Page3 />, <Page4 />, <Page5 />]
+const formPages = [Page1, Page2, Page3, Page4, Page5]
 
-const BikeSelectionForm = (): JSX.Element  => {
-  const [page, setPage] = useState<number>(0)
-
+const BikeSelectionForm = (): JSX.Element => {
+  const [page, setPage] = useState<number>(0) 
 
   return (
     <Formik<FormValues, {}>
       initialValues={{ height: 0, rideOptions: RideOptions.City, electricalBike: ElectricalBikeEnum.No, budget: 0, brandPreferences: [] }}
       validationSchema={Yup.object({
-        firstName: Yup.string()
-          .max(15, 'Must be 15 characters or less')
+        height: Yup.number()
+          .max(300, 'Enter a value less than 300')
           .required('Required'),
         lastName: Yup.string()
           .max(20, 'Must be 20 characters or less')
@@ -77,16 +73,25 @@ const BikeSelectionForm = (): JSX.Element  => {
       }}
     >
       {
-        ({ values, setFieldValue }) => (
+        ({ values, setFieldValue, handleChange }) => (
           <Form className='header--form'>
             <FormObserver />
-            {formPages[page]}
+            {
+              formPages.map((Component,i)=>{
+                return (
+                  <React.Fragment key={i}>
+                    {
+                      i === page && <Component onChangeFn={handleChange} setFieldValue={setFieldValue}/>
+                    }                   
+                  </React.Fragment>
+                )
+              })
+            }
             {
               page !== formPages.length - 1
-                ? <button type='submit' className='btn-primary' onClick={() => setPage(page + 1)}>Proceed</button>
-                : <button type='submit' className='btn-primary'>Submit</button>
+                ? <button type='submit' className='btn-primary btn-md floated-right' onClick={() => setPage(page + 1)}>Proceed</button>
+                : <button type='submit' className='btn-primary btn-md'>Submit</button>
             }
-
           </Form>
         )
       }
@@ -100,7 +105,7 @@ const App = () => {
       <header className='header'>
         <div className='header--shadow' />
         <BikeSelectionForm />
-            {/* <img
+        {/* <img
           src={mainLogo}
           alt='website logo'
           height={200}
