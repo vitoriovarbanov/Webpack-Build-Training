@@ -40,16 +40,19 @@
         left: 50%;
         -webkit-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
+        width: 80rem;
 
         &-page1{
+            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
             align-items: center;
             min-height: 30rem;
+            text-align: center;
         }
 
-        &-page2{
+/*         &-page2{
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -57,5 +60,14 @@
             align-items: center;
             min-height: 30rem;
         }
+
+        &-page3{
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            min-height: 30rem;
+        } */
     }
 }

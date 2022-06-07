@@ -10,7 +10,8 @@ import {
   useField,
   FieldHookConfig,
   useFormikContext,
-  FieldProps
+  FieldProps,
+  FormikErrors
 } from 'formik';
 import { Page1 } from './components/BikeSelectForm/Page1';
 import { Page2 } from './components/BikeSelectForm/Page2';
@@ -20,6 +21,7 @@ import { Page5 } from './components/BikeSelectForm/Page5';
 
 
 enum RideOptions {
+  NotSelected = '',
   City = "City",
   Mountain = "Mountain",
   Road = "Road",
@@ -27,11 +29,12 @@ enum RideOptions {
 }
 
 enum ElectricalBikeEnum {
+  NotSelected = '',
   No = "No",
   Yes = "Yes",
 }
 
-interface FormValues {
+export interface FormValues {
   height: number;
   rideOptions: RideOptions;
   electricalBike: ElectricalBikeEnum;
@@ -39,10 +42,18 @@ interface FormValues {
   brandPreferences: string[]
 }
 
+export interface FormValuesTouched {
+  height?: boolean;
+  rideOptions?: boolean;
+  electricalBike?: boolean;
+  budget?: boolean;
+  brandPreferences?: boolean
+}
+
 const FormObserver = (): null => {
   const { values } = useFormikContext();
   useEffect(() => {
-    console.log("FormObserver::values", values);
+    //console.log("FormObserver::values", values);
   }, [values]);
   return null;
 };
@@ -50,50 +61,91 @@ const FormObserver = (): null => {
 const formPages = [Page1, Page2, Page3, Page4, Page5]
 
 const BikeSelectionForm = (): JSX.Element => {
-  const [page, setPage] = useState<number>(0) 
+  const [page, setPage] = useState<number>(0)
+
+  const currentPageValidation = (errors: FormikErrors<FormValues>, values: FormValues): boolean => {
+    if (page === 0 && (errors.height || !values.height)) {
+      return true
+    } else if (page === 1 && (errors.rideOptions || !values.rideOptions)) {
+      return true
+    } else if (page === 2 && (errors.electricalBike || !values.electricalBike)) {
+      return true
+    }else if (page === 3 && (errors.budget || !values.budget)) {
+      return true
+    }
+    return false
+  }
 
   return (
     <Formik<FormValues, {}>
-      initialValues={{ height: 0, rideOptions: RideOptions.City, electricalBike: ElectricalBikeEnum.No, budget: 0, brandPreferences: [] }}
+      initialValues={{ height: 0, rideOptions: RideOptions.NotSelected, electricalBike: ElectricalBikeEnum.NotSelected, budget: 0, brandPreferences: [] }}
       validationSchema={Yup.object({
         height: Yup.number()
           .max(300, 'Enter a value less than 300')
           .required('Required'),
-        lastName: Yup.string()
-          .max(20, 'Must be 20 characters or less')
+        rideOptions: Yup.string()
           .required('Required'),
-        email: Yup.string().email('Invalid email address').required('Required')
+        electricalBike: Yup.string()
+          .required('Required'),
+        budget: Yup.number()
+          .required('Required')
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
           //await new Promise((r) => setTimeout(r, 500));
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
+          //alert(JSON.stringify(values, null, 2));
+          //setSubmitting(false);
         }, 400);
       }}
     >
       {
-        ({ values, setFieldValue, handleChange }) => (
-          <Form className='header--form'>
-            <FormObserver />
-            {
-              formPages.map((Component,i)=>{
-                return (
-                  <React.Fragment key={i}>
-                    {
-                      i === page && <Component onChangeFn={handleChange} setFieldValue={setFieldValue}/>
-                    }                   
-                  </React.Fragment>
-                )
-              })
-            }
-            {
-              page !== formPages.length - 1
-                ? <button type='submit' className='btn-primary btn-md floated-right' onClick={() => setPage(page + 1)}>Proceed</button>
-                : <button type='submit' className='btn-primary btn-md'>Submit</button>
-            }
-          </Form>
-        )
+        ({
+          values,
+          touched,
+          errors,
+          dirty,
+          isSubmitting,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          handleReset,
+          setFieldValue,
+          isValid }) => {
+          return (
+            <Form className='header--form'>
+              <FormObserver />
+              {
+                formPages.map((Component, i) => {
+                  return (
+                    <React.Fragment key={i}>
+                      {
+                        i === page && 
+                        <Component onChangeFn={handleChange} setFieldValue={setFieldValue} values={values} touched={touched}/>
+                      }
+                    </React.Fragment>
+                  )
+                })
+              }
+              {
+                page !== formPages.length - 1
+                  ?
+                  <button
+                    type='submit'
+                    className='btn-primary btn-md floated-right'
+                    onClick={() => setPage(page + 1)}
+                    disabled={currentPageValidation(errors, values)}
+                  >
+                    Proceed</button>
+                  : <button type='submit' className='btn-primary btn-md floated-right'>Submit</button>
+              }
+              {
+                page !== 0 ?
+                  <button type='submit' className='btn-primary btn-md' onClick={() => setPage(page - 1)}>Back</button>
+                  : <></>
+              }
+            </Form>
+          )
+        }
       }
     </Formik>
   );

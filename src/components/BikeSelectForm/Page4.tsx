@@ -4,14 +4,23 @@ import {
     ErrorMessage,
 } from 'formik';
 
-export const Page4 = () => {
+export const Page4 = ({ setFieldValue }: { setFieldValue: (field: string, value: string | number) => void }) => {
 
     return (
         <>
-            <div id="budget-container">
-                <label htmlFor="budget">Set your maximum available budget</label>
-                <Field name="budget" type="number" />
-                <ErrorMessage name="budget" />
+            <div id="budget-container" className="header--form-page1">
+                <label htmlFor="budget" className='form-label-header'>Set your maximum available budget</label>
+                <div className='form-input-container'>
+                    <Field name="budget" type="number" className="form-input"
+                        onFocus={(e: Event & { target: HTMLInputElement }) => {
+                            if (parseFloat(e.target.value) === 0) {
+                                setFieldValue("budget", '')
+                            }
+                        }}
+                    />
+                    <span className='end-label-eu'>(€)</span>
+                </div>
+                <ErrorMessage name="budget">{msg => <div className='form-error-bottom'>{msg}</div>}</ErrorMessage>
             </div>
 
         </>

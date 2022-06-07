@@ -3,21 +3,33 @@ import {
     Field,
     ErrorMessage,
 } from 'formik';
+import { FormValues, FormValuesTouched } from '../../App'
 
-export const Page3 = () => {
+export const Page3 = ({ values, touched }: { values: FormValues, touched: FormValuesTouched }) : JSX.Element => {
+    const radioGroupDefinition = [
+        { value: "No" },
+        { value: "Yes" },
+    ]
 
     return (
         <>
-            <div id="my-radio-group-ebike">Do you consider choosing an electical bike?</div>
-            <div role="group" aria-labelledby="my-radio-group-ebike">
-                <label>
-                    <Field type="radio" name="electricalBike" value="No" />
-                    No
-                </label>
-                <label>
-                    <Field type="radio" name="electricalBike" value="Yes" />
-                    Yes
-                </label>
+            <div className="header--form-page1" id="my-radio-group-ebike">
+                <label htmlFor="height" className='form-label-header'>Do you consider buying an e-bike?</label>
+                <div role="group" aria-labelledby="my-radio-group-ebike" className='radio-container-page3'>
+                    {
+                        radioGroupDefinition.map(x => (
+                            <label className={`radio-label ${values.electricalBike === x.value ? 'is-selected' : ''}`}>
+                                <Field type="radio" name="electricalBike" className='radio-input' value={x.value} />
+                                <div className='radio-design'></div>
+                                <div className='radio-text'>{x.value}</div>
+                            </label>
+                        ))
+                    }
+                </div>
+                {
+                    touched.rideOptions &&
+                    <ErrorMessage name="electricalBike">{msg => <div className='form-error-bottom'>{msg}</div>}</ErrorMessage>
+                }
             </div>
         </>
     )
