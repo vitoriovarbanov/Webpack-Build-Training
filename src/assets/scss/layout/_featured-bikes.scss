@@ -1,0 +1,52 @@
+.featured-bikes{
+    height: 80rem;
+    //background-color: $gray-mist;
+    position: relative;
+    margin-top: -23.5vh;
+}
+
+.card{
+
+    &--container{
+        //background-color: white;
+        width: 80%;
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -60%);
+        display: flex;
+        color: black;
+        scroll-snap-type: x mandatory;
+        overflow: auto;
+        scroll-padding: 0 20px;
+        
+    }
+
+    &--text-container{
+        padding-top: 50px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &--slide1{
+        flex-shrink: 0;
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+        width: 30rem;
+        height: 35rem;
+        margin: 2rem;
+        padding: 1rem;
+        background-color: white;
+        box-shadow: rgb(38, 57, 77) 0px 10px 20px -10px;
+        //box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    }
+
+    &--img{
+        height: 200px;
+        object-fit: cover;
+        //border: 1px solid black;
+    }
+
+}

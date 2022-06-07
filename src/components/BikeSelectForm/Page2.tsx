@@ -15,7 +15,7 @@ export const Page2 = ({ values, touched }: { values: FormValues, touched: FormVa
 
     return (
         <>
-            <div id="my-radio-group" className='header--form-page1'>
+            <div id="my-radio-group" className="form-section-page-container">
                 <label htmlFor="height" className='form-label-header'>
                     Where are you most likely to ride your bicycle?
                 </label>

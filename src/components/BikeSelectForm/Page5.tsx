@@ -28,7 +28,7 @@ export const Page5 = ({ values }: { values: FormValues }) => {
 
     return (
         <>
-            <div className='header--form-page1'>
+            <div className="form-section-page-container">
                 <label htmlFor="height" className='form-label-header' id="my-checkbox-group">
                     Do you have any brand preferences?
                 </label>

@@ -13,7 +13,7 @@ export const Page3 = ({ values, touched }: { values: FormValues, touched: FormVa
 
     return (
         <>
-            <div className="header--form-page1" id="my-radio-group-ebike">
+            <div className="form-section-page-container" id="my-radio-group-ebike">
                 <label htmlFor="height" className='form-label-header'>Do you consider buying an e-bike?</label>
                 <div role="group" aria-labelledby="my-radio-group-ebike" className='radio-container-page3'>
                     {

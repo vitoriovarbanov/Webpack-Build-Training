@@ -1,4 +1,4 @@
-import React, { FormEventHandler, useEffect, useState } from 'react';
+import React, { FormEventHandler, useEffect, useState, useRef } from 'react';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/scss/index.scss';
 import * as Yup from 'yup';
@@ -18,6 +18,8 @@ import { Page2 } from './components/BikeSelectForm/Page2';
 import { Page3 } from './components/BikeSelectForm/Page3';
 import { Page4 } from './components/BikeSelectForm/Page4';
 import { Page5 } from './components/BikeSelectForm/Page5';
+import { FeaturedBikes } from './components/FeaturedBikes/FeaturedBikes';
+import mainLogo from './assets/img/logo-main.png'
 
 
 enum RideOptions {
@@ -60,6 +62,7 @@ const FormObserver = (): null => {
 
 const formPages = [Page1, Page2, Page3, Page4, Page5]
 
+
 const BikeSelectionForm = (): JSX.Element => {
   const [page, setPage] = useState<number>(0)
 
@@ -70,7 +73,7 @@ const BikeSelectionForm = (): JSX.Element => {
       return true
     } else if (page === 2 && (errors.electricalBike || !values.electricalBike)) {
       return true
-    }else if (page === 3 && (errors.budget || !values.budget)) {
+    } else if (page === 3 && (errors.budget || !values.budget)) {
       return true
     }
     return false
@@ -112,15 +115,15 @@ const BikeSelectionForm = (): JSX.Element => {
           setFieldValue,
           isValid }) => {
           return (
-            <Form className='header--form'>
+            <Form className='form-section--form'>
               <FormObserver />
               {
                 formPages.map((Component, i) => {
                   return (
                     <React.Fragment key={i}>
                       {
-                        i === page && 
-                        <Component onChangeFn={handleChange} setFieldValue={setFieldValue} values={values} touched={touched}/>
+                        i === page &&
+                        <Component onChangeFn={handleChange} setFieldValue={setFieldValue} values={values} touched={touched} />
                       }
                     </React.Fragment>
                   )
@@ -152,30 +155,50 @@ const BikeSelectionForm = (): JSX.Element => {
 };
 
 const App = () => {
+
+  const el = useRef<null | HTMLLIElement>(null);
+  useEffect(() => {
+    if (el.current === null) { }
+    else
+      el!.current!.scrollIntoView({ inline: 'start', behavior: 'smooth' });
+
+  }, [])
+
   return (
     <div className='App'>
-      <header className='header'>
-        <div className='header--shadow' />
-        <BikeSelectionForm />
-        {/* <img
-          src={mainLogo}
-          alt='website logo'
-          height={200}
-          width={200}
-          className='header--logo'
-        />
-        <div className='header--container-heading'>
-          <h1 className='heading-primary'>
-            <span>Bike Matcher</span>
-          </h1>
-          <h3 className='heading-tertiary'>
-            <span>Find the perfect bicycle for you</span>
-          </h3>
-          <button className='btn-primary mt-2' type='button'>
-            Make a match
-          </button>
-        </div> */}
-      </header>
+      <div className='fig-1'></div>
+      <div className='fig-2'></div>
+      <div className='fig-3'></div>
+      <div className='overflow-container'>
+        <header className='header'>
+          <div className='header--shadow' />
+          <img
+            src={mainLogo}
+            alt='website logo'
+            height={200}
+            width={200}
+            className='header--logo'
+          />
+          <div className='header--container-heading'>
+            <h1 className='heading-primary'>
+              <span>Bike Matcher</span>
+            </h1>
+            <h3 className='heading-tertiary'>
+              <span>Find the perfect bicycle for you</span>
+            </h3>
+            <button className='btn-primary btn-lg mt-2' type='button'>
+              Make a match
+            </button>
+          </div>
+        </header>
+        <main>
+          <FeaturedBikes />
+          <section className='form-section'>
+            <BikeSelectionForm />
+          </section>
+        </main>
+      </div>
+
     </div>
   );
 };

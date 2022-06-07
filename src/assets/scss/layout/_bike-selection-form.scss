@@ -1,0 +1,33 @@
+.form-section{
+    height: 99vh;
+    position: relative;
+    background: url('../../img/header-background.jpg');
+    background-size: cover;
+    background-position-y: center;
+    transform: skewY(-5deg);
+
+    & > * {
+        transform: skewY(5deg);
+    }
+    
+    
+    &--form{
+        position: absolute;
+        display: flow-root;
+        top: 40%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        width: 80rem;
+
+        &-page-container{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            min-height: 30rem;
+            text-align: center;
+        }
+    }
+}

@@ -1,13 +1,15 @@
 *,
 *::after,
-*::before{
+*::before {
     margin: 0;
     padding: 0;
     box-sizing: inherit;
 }
 
-html{
+html {
     font-size: 62.5%;
+    overflow: hidden;
+    height: 100%;
 }
 
 body {
@@ -15,4 +17,42 @@ body {
     font-weight: 400;
     line-height: $line-height;
     color: #fff;
+    margin: 40px;
 }
+
+.overflow-container {
+    overflow-y: scroll;
+    height: calc(100vh - 85px);
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+        /* Safari and Chrome */
+    }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 1px;
+    height: 7px;
+    border-radius: 20px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 20px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 30px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
