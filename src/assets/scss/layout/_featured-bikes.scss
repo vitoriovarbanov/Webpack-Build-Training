@@ -1,17 +1,22 @@
-.featured-bikes{
-    height: 80rem;
-    //background-color: $gray-mist;
+.featured-bikes {
+    height: 88rem;
+    background-color: $color-alice-blue;
     position: relative;
     margin-top: -23.5vh;
+
+    h2 {
+        text-align: right;
+        margin-right: 4rem;
+    }
+
 }
 
-.card{
+.card {
 
-    &--container{
-        //background-color: white;
+    &--container {
         width: 80%;
         position: absolute;
-        top: 70%;
+        top: 60%;
         left: 50%;
         -webkit-transform: translate(-50%, -50%);
         transform: translate(-50%, -60%);
@@ -20,16 +25,16 @@
         scroll-snap-type: x mandatory;
         overflow: auto;
         scroll-padding: 0 20px;
-        
+
     }
 
-    &--text-container{
-        padding-top: 50px;
+    &--text-container {
+        padding-top: 5rem;
         display: flex;
         flex-direction: column;
     }
 
-    &--slide1{
+    &--slide1 {
         flex-shrink: 0;
         scroll-snap-align: start;
         display: flex;
@@ -39,14 +44,12 @@
         margin: 2rem;
         padding: 1rem;
         background-color: white;
-        box-shadow: rgb(38, 57, 77) 0px 10px 20px -10px;
-        //box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
     }
 
-    &--img{
+    &--img {
         height: 200px;
         object-fit: cover;
-        //border: 1px solid black;
     }
 
 }

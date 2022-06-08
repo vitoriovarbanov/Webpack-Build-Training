@@ -1,0 +1,13 @@
+@mixin gradientMain {
+    background: linear-gradient(to right, #B294FF, #57E6E6, #FEFFB8, #57E6E6, #B294FF, #57E6E6);
+    background-size: 500% auto;
+}
+
+@mixin backgroundCircleFig ($prop) {
+    clip-path: circle(50% at 50% 50%);
+    position: fixed;
+    width: 220px;
+    height: 220px;
+    bottom: -5rem;
+    #{$prop}: -10rem;
+}

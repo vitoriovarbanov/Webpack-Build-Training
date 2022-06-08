@@ -21,7 +21,7 @@ export const FeaturedBikes = () => {
     return (
         <>
             <section className='featured-bikes'>
-                <h2 className='heading-secondary black pt-24'>
+                <h2 className='heading-secondary black pt-20'>
                     <span>Featured bicycles</span>
                 </h2>
                 <ul className='card--container'>

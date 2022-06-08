@@ -17,7 +17,7 @@ export const Page1 = ({ onChangeFn, setFieldValue }:
   { onChangeFn: (value: Event & { target: HTMLInputElement }) => void, setFieldValue: (field: string, value: string | number) => void }) => {
   return (
     <>
-      <div className="form-section-page-container">
+      <div className="form-section--page-container">
         <label htmlFor="height" className='form-label-header'>Enter your height</label>
         <div className='form-input-container'>
           <Field name="height" type="number" className="form-input"

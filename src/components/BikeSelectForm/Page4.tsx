@@ -8,7 +8,7 @@ export const Page4 = ({ setFieldValue }: { setFieldValue: (field: string, value:
 
     return (
         <>
-            <div id="budget-container" className="form-section-page-container">
+            <div id="budget-container" className="form-section--page-container">
                 <label htmlFor="budget" className='form-label-header'>Set your maximum available budget</label>
                 <div className='form-input-container'>
                     <Field name="budget" type="number" className="form-input"
