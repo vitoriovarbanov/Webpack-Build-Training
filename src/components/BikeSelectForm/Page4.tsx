@@ -20,7 +20,7 @@ export const Page4 = ({ setFieldValue }: { setFieldValue: (field: string, value:
                     />
                     <span className='end-label-eu'>(€)</span>
                 </div>
-                <ErrorMessage name="budget">{msg => <div className='form-error-bottom'>{msg}</div>}</ErrorMessage>
+                <ErrorMessage name="budget">{msg => <div className='form-error-bt4'>{msg}</div>}</ErrorMessage>
             </div>
 
         </>

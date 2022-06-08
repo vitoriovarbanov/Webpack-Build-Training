@@ -11,3 +11,12 @@
     bottom: -5rem;
     #{$prop}: -10rem;
 }
+
+@mixin formError($bottomProp) {
+    position: absolute;
+    background-color: red;
+    font-size: 1.5rem;
+    border-radius: 5rem;
+    padding: .2rem .9rem;
+    bottom: $bottomProp
+}

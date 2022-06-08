@@ -3,13 +3,7 @@
     text-transform: uppercase;
     letter-spacing: .5rem;
     font-weight: 400;
-}
-
-.form-label-header-sm {
-    font-size: 3rem;
-    text-transform: uppercase;
-    letter-spacing: .2rem;
-    font-weight: 400;
+    text-shadow: 1px 1px 2px black;
 }
 
 .form-input-container {
@@ -178,22 +172,16 @@ input[type=number] {
 }
 
 // ************************** ERRORS **********************//
-%form-error {
-    position: absolute;
-    background-color: red;
-    font-size: 1.5rem;
-    border-radius: 5rem;
-    padding: .2rem .9rem;
+.form-error-bt0 {
+    @include formError(0)
 }
 
-.form-error-bottom {
-    @extend %form-error;
-    bottom: 0
+.form-error-bt4 {
+    @include formError(4.5rem)
 }
 
-.form-error-center {
-    @extend %form-error;
-    bottom: 3.5rem;
+.form-error-bt6 {
+    @include formError(6rem)
 }
 
 

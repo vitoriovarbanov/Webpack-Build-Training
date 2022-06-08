@@ -18,7 +18,7 @@ export const Page1 = ({ onChangeFn, setFieldValue }:
   return (
     <>
       <div className="form-section--page-container">
-        <label htmlFor="height" className='form-label-header'>Enter your height</label>
+        <label htmlFor="height" className='form-label-header mb-2'>Enter your height</label>
         <div className='form-input-container'>
           <Field name="height" type="number" className="form-input"
             onFocus={(e: Event & { target: HTMLInputElement }) => {
@@ -34,7 +34,7 @@ export const Page1 = ({ onChangeFn, setFieldValue }:
             }} />
           <span className='end-label-cm'>cm</span>
         </div>
-      <ErrorMessage name="height">{msg => <div className='form-error-center'>{msg}</div>}</ErrorMessage>
+      <ErrorMessage name="height">{msg => <div className='form-error-bt6'>{msg}</div>}</ErrorMessage>
       </div>
     </>
   )

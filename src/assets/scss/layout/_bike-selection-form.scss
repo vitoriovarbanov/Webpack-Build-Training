@@ -1,7 +1,7 @@
 .form-section{
     height: 80vh;
     position: relative;
-    background: url('../../img/header-background.jpg');
+    background: url('../../img/form-bg.jpg');
     background-size: cover;
     background-position-y: center;
     transform: skewY(-5deg);
@@ -13,7 +13,6 @@
     & > * {
         transform: skewY(5deg);
     }
-    
     
     &--form{
         position: absolute;
@@ -31,7 +30,7 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
+        justify-content: center;
         align-items: center;
         min-height: 30rem;
         text-align: center;

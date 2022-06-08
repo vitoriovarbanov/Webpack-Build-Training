@@ -2,17 +2,22 @@
     margin-top: 2rem;
 }
 
+.mb-2{
+    margin-bottom: 2rem;
+}
+
 .pt-20{
     padding-top: 20rem;
 }
 
 .floated-right{
     float: right;
-    position: absolute;
-    bottom: 0;
-    right: 0;
 }
 
 .black{
     color: black;
+}
+
+.text-shadow{
+    text-shadow: 1px 1px 2px black;
 }

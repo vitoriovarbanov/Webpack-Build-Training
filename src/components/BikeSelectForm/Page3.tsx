@@ -28,7 +28,7 @@ export const Page3 = ({ values, touched }: { values: FormValues, touched: FormVa
                 </div>
                 {
                     touched.rideOptions &&
-                    <ErrorMessage name="electricalBike">{msg => <div className='form-error-bottom'>{msg}</div>}</ErrorMessage>
+                    <ErrorMessage name="electricalBike">{msg => <div className='form-error-bt0'>{msg}</div>}</ErrorMessage>
                 }
             </div>
         </>

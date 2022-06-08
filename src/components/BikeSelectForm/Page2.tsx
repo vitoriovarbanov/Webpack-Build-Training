@@ -32,7 +32,7 @@ export const Page2 = ({ values, touched }: { values: FormValues, touched: FormVa
                 </div>
                 {
                     touched.rideOptions &&
-                    <ErrorMessage name="rideOptions">{msg => <div className='form-error-bottom'>{msg}</div>}</ErrorMessage>
+                    <ErrorMessage name="rideOptions">{msg => <div className='form-error-bt0'>{msg}</div>}</ErrorMessage>
                 }
             </div>
         </>

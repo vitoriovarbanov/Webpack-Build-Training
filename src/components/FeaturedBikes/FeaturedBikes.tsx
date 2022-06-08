@@ -21,24 +21,28 @@ export const FeaturedBikes = () => {
     return (
         <>
             <section className='featured-bikes'>
-                <h2 className='heading-secondary black pt-20'>
+                <h2 className='heading-secondary black pt-20 text-shadow'>
                     <span>Featured bicycles</span>
                 </h2>
                 <ul className='card--container'>
                     {
                         imageSources.map(x => (
-                            <li className='card--slide1'>
-                                <img
-                                    src={x.imgSrc}
-                                    alt='Cross bicycle'
-                                    height={300}
-                                    width={300}
-                                    className='card--img'
-                                />
-                                <h4 className='heading-h4'>Cross GRX-7</h4>
-                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur, eveniet recusandae? Vel natus voluptas libero ipsam, temporibus, cumque provident voluptatum,
-                                    consequuntur modi sit dolorem. Voluptatum dolores doloribus natus nulla facilis?</p>
-                            </li>
+                            <>
+                                <li className='card--slide'>
+                                    <div className='card--slide-back'>
+                                        <img
+                                            src={x.imgSrc}
+                                            alt='Cross bicycle'
+                                            height={300}
+                                            width={300}
+                                            className='card--img' />
+                                        <h4 className='heading-h4'>Cross GRX-7</h4>
+                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur, eveniet recusandae? Vel natus voluptas libero ipsam, temporibus, cumque provident voluptatum,
+                                            consequuntur modi sit dolorem. Voluptatum dolores doloribus natus nulla facilis?</p>
+                                    </div>
+                                </li>
+
+                            </>
                         ))
                     }
                 </ul>
